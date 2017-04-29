@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	<struts>
+		<constant name="struts.multipart.maxSize" value="90000000"/>
+	 	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    	<constant name="struts.devMode" value="true" />
+    	<constant name="struts.ui.theme" value="simple" />
+		<package name="default" namespace="/" extends="json-default" >
+	<!-- 	<interceptors>
+			<interceptor name="loginInterceptor" class="cn.weige.surveysystem.interceptor.LoginInterceptor" />
+			<interceptor-stack name="surveySystem">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack">  
+			        渲染页面前刷新model在ValueStack的root的引用  
+			        <param name="modelDriven.refreshModelBeforeResult">true</param>
+			        <param name="fileUpload.maximumSize">100000</param>
+			        <param name="fileUpload.allowedExtensions">.bmp,.jpg,.jpeg,.png,.gif</param>
+			        <param name="fileUpload.allowedTypes">image/bmp,/image/jpg,image/jpeg,image/png,image/gif</param> 
+   				 </interceptor-ref>  
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="surveySystem" /> -->
+		<global-results>
+			<result name="login">/login.jsp</result>
+			<result name="designSurveyAction" type="redirectAction">
+					<param name="namespace">/</param>
+					<param name="actionName">/survey_design</param>
+					<param name="sid">${sid}</param>
+				</result>
+		</global-results>
+			<action name="regist_*" class="registAction" method="{1}">
+				<result>/index.jsp</result>
+				<result name="input">/regist.jsp</result>
+				<result name="registPage">/regist.jsp</result>
+			</action>
+			
+			<action name="login_*" class="loginAction" method="{1}">
+				<result name="loginPage">/login.jsp</result>
+				<result name="input">/login.jsp</result>
+				<result name="success">/index.jsp</result>
+			</action>
+			<action name="selectUser_*" class="selectUserAction" method="{1}">
+				<result name="success">/admin/user/selectUser.jsp</result>
+				
+			</action>
+		
+		
+		</package>
+	</struts>
